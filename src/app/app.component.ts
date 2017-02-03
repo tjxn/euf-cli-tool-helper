@@ -10,26 +10,26 @@ export class AppComponent {
 
   creditUnions : CreditUnion[] = [
     { 
-      name: 'First Calgary',
-      cuId: '046610100',
-      route: '0899',
-      transit: '96419',
-      interacApiVersion: '3.4'
-    },
-    { 
       name: 'Affinity',
       cuId: '378601001',
-      route: '0889',
+      route: '889',
       transit: '52498',
       interacApiVersion: '3.4'
     },
     {
       name: 'Interior Savings',
       cuId: '833600041',
-      route: '0809',
+      route: '809',
       transit: '00490',
       interacApiVersion: '3.4'
-    }
+    },
+    { 
+      name: 'First Calgary',
+      cuId: '046610100',
+      route: '899',
+      transit: '96419',
+      interacApiVersion: '3.4'
+    },
   ];
 
   fiId = [ 'CA000709', 'CA000809' ];
@@ -58,7 +58,7 @@ export class AppComponent {
   ]
 
   // Two way bound fields
-  contactId: string = '';
+  contactId: string = 'CA9tSMQtdWUa';
   requestAmount: number = 10.01;
   customerName: string = 'Requestor';
   minFulfillAmount: number = 5.05;
@@ -80,7 +80,7 @@ export class AppComponent {
   selectedFiId: string = this.fiId[0];
   selectedCreditUnion : CreditUnion;
 
-  participantUserId: string = '';
+  participantUserId: string = 'CLFLNWHLQPVZKP8QN1ATD0S1WCP0ASVX';
   invoiceDueDate : Date = new Date();
 
   copyBtnText = "Copy to clipboard";
@@ -119,21 +119,24 @@ export class AppComponent {
   getMinutesBeforeExpire() : string {
     return ' --MinutesBeforeExpire ' + this.minutesBeforeExpire;    
   }
-  getIsEditableFulfillAmount() : string {
-    return ' --IsEditableFulfillAmount ' + this.isEditableFulfillAmount;    
-  }
   getName() : string {
     return ' --Name "' + this.customerName + '"';    
   }
   getSenderMemo() : string {
     return ' --SenderMemo "' + this.senderMemo + '"';
   }
+  
+  getIsEditableFulfillAmount() : string {
+    return ' --IsEditableFulfillAmount ' + this.isEditableFulfillAmount;    
+  }
+  /*
   getMinFulfillAmount() : string {
     return ' --MinFulfillAmount ' + this.minFulfillAmount.toFixed(2);    
   }
   getMaxFulfillAmount() : string {
     return ' --MaxFulfillAmount ' + this.maxFulfillAmount.toFixed(2);    
   }
+  */
   getInvoiceNumber() : string {
     return ' --InvoiceNumber "' + this.invoiceNumber + '"';    
   }
