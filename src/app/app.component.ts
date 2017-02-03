@@ -13,21 +13,21 @@ export class AppComponent {
       name: 'First Calgary',
       cuId: '046610100',
       route: '0899',
-      transit: '00000',
+      transit: '96419',
       interacApiVersion: '3.4'
     },
     { 
       name: 'Affinity',
-      cuId: '000000000',
-      route: '0000',
-      transit: '00000',
+      cuId: '378601001',
+      route: '0889',
+      transit: '52498',
       interacApiVersion: '3.4'
     },
     {
       name: 'Interior Savings',
-      cuId: '000000000',
+      cuId: '833600041',
       route: '0809',
-      transit: '00000',
+      transit: '00490',
       interacApiVersion: '3.4'
     }
   ];
