@@ -1,3 +1,122 @@
-<h1>
-  {{title}}
-</h1>
+
+
+<md-list>
+  <!-- command -->
+  <md-list-item>
+    <md-select placeholder="Command" id="command" [(ngModel)]="selectedCommand">
+        <md-option *ngFor="let command of commands" [value]="command.shortName" required>
+            {{ command.commandName }} - {{ command.shortName }}
+        </md-option>
+    </md-select>
+  </md-list-item>
+  
+  <!-- cu -->
+  <md-list-item>
+    <md-select placeholder="Credit Union" id="creditUnion" [(ngModel)]="selectedCreditUnion">
+        <md-option *ngFor="let creditUnion of creditUnions" [value]="creditUnion" required>
+            {{ creditUnion.name }} - {{ creditUnion.interacApiVersion }}
+        </md-option>
+    </md-select>
+  </md-list-item>
+
+  <md-list-item>
+    <md-select placeholder="Participant Fi Id" id="fiId" [(ngModel)]="selectedFiId" required>
+        <md-option *ngFor="let id of fiId" [value]="id" >
+            {{ id }}
+        </md-option>
+    </md-select>
+  </md-list-item>
+  <md-list-item>
+    <md-input-container>
+      <input md-input placeholder="Participant User Id" id="participantUserId" [(ngModel)]="participantUserId" required/>
+    </md-input-container>
+  </md-list-item>
+  <md-list-item>
+    <md-input-container>
+      <input md-input placeholder="Contact Id" type="text" id="contactId" [(ngModel)]="contactId" required/>
+    </md-input-container>
+  </md-list-item>
+  <md-list-item>
+    <md-input-container>
+      <input md-input placeholder="Requestor Name" type="text" id="customerName" [(ngModel)]="customerName" required/>
+    </md-input-container>
+    <md-input-container>
+      <input md-input placeholder="Requestor's Account Number" type="text" id="customerAccountNumber" [(ngModel)]="customerAccountNumber" required/>
+    </md-input-container>
+  </md-list-item>
+  <md-list-item>
+    <md-input-container>
+      <input md-input placeholder="Fi Account Id" type="text" id="fiAccountId" [(ngModel)]="fiAccountId"/>
+    </md-input-container>
+    Ex. 12345
+  </md-list-item>
+  <md-list-item>
+    <label>CA $</label>
+    <md-input-container>
+      <input md-input placeholder="Request Amount" type="number" id="requestAmount" [(ngModel)]="requestAmount" required/>
+    </md-input-container>
+
+    <md-checkbox id="isEditableFulfillAmount" [(ngModel)]="isEditableFulfillAmount">Is this amount editable?</md-checkbox>
+  </md-list-item>
+  <md-list-item>  
+    <label>CA $</label>
+    <md-input-container>
+      <input md-input placeholder="Min Fulfill Amount" type="number" id="minFulfillAmount" [(ngModel)]="minFulfillAmount"/>
+    </md-input-container>
+    <label>CA $</label>
+    <md-input-container>
+      <input md-input placeholder="Max Fulfill Amount" type="number" id="maxFulfillAmount" [(ngModel)]="maxFulfillAmount"/>
+    </md-input-container>
+  </md-list-item>
+  <md-list-item>
+    <md-input-container>
+      <input md-input placeholder="Minutes before expiration" type="number" step="1" id="minutesBeforeExpire" [(ngModel)]="minutesBeforeExpire"/>
+    </md-input-container>  
+  </md-list-item>
+
+  <md-list-item>
+    <md-input-container>
+      <input md-input placeholder="Invoice Number" type="text" id="invoiceNumber" [(ngModel)]="invoiceNumber"/>
+    </md-input-container>
+  </md-list-item>
+
+  <md-list-item>  
+    <label>Invoice Due Date</label>
+    <material-datepicker [(date)]="invoiceDueDate"></material-datepicker>
+  </md-list-item>    
+
+  <md-list-item>
+    <md-input-container>
+      <textarea md-input placeholder="Requestor Memo" id="senderMemo" [(ngModel)]="senderMemo"></textarea>
+    </md-input-container>
+  </md-list-item>
+
+</md-list>
+
+
+<div id="output">
+  <md-card>
+    <md-card-title>Output of this form:</md-card-title>
+    <md-card-content #inputTarget>
+      {{ selectedCommand }} 
+      {{ getFiId() }} 
+      {{ getCreditUnionId() }}
+      {{ getRoute() }}
+      {{ getTransit() }}
+      {{ getParticipantUserId() }}
+      {{ getContactId() }}
+      {{ getRequestAmount() }}
+      {{ getAccountNumber() }}
+      {{ getMinutesBeforeExpire() }}
+      {{ getIsEditableFulfillAmount() }}
+      {{ getName() }}
+      {{ getSenderMemo() }}
+      {{ getMinFulfillAmount() }}
+      {{ getMaxFulfillAmount() }}
+      {{ getInvoiceNumber() }}
+      {{ getInvoiceDueDate() }}
+      {{ getFIAccountId() }}
+    </md-card-content>
+    <button md-raised-button [ngxClipboard]="inputTarget" (cbOnSuccess)="copyText($event)">{{ copyBtnText }}</button>
+  </md-card>
+</div>

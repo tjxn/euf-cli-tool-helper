@@ -5,6 +5,12 @@ import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
 
+import { MaterialModule } from '@angular/material';
+import { DatepickerModule } from 'angular2-material-datepicker'
+import { ClipboardModule } from 'ngx-clipboard';
+
+import 'hammerjs';
+
 @NgModule({
   declarations: [
     AppComponent
@@ -12,7 +18,10 @@ import { AppComponent } from './app.component';
   imports: [
     BrowserModule,
     FormsModule,
-    HttpModule
+    HttpModule,
+    MaterialModule.forRoot(),
+    DatepickerModule,
+    ClipboardModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
