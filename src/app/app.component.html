@@ -12,7 +12,7 @@
   
   <!-- cu -->
   <md-list-item>
-    <md-select placeholder="Credit Union" id="creditUnion" [(ngModel)]="selectedCreditUnion">
+    <md-select placeholder="Credit Union" id="creditUnion" [ngModel]="selectedCreditUnion" (ngModelChange)="prepopulateFields($event)">
         <md-option *ngFor="let creditUnion of creditUnions" [value]="creditUnion" required>
             {{ creditUnion.name }} - {{ creditUnion.interacApiVersion }}
         </md-option>

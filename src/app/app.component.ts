@@ -10,25 +10,40 @@ export class AppComponent {
 
   creditUnions : CreditUnion[] = [
     { 
+      name: 'Select a credit union',
+      cuId: '',
+      route: '',
+      transit: '',
+      interacApiVersion: '',
+      defaultParticipantUserId: '',
+      defaultContactId: '',
+    },
+    { 
       name: 'Affinity',
       cuId: '378601001',
       route: '889',
       transit: '52498',
-      interacApiVersion: '3.4'
+      interacApiVersion: '3.4',
+      defaultParticipantUserId: 'CLFLNWHLQPVZKP8QN1ATD0S1WCP0ASVX',
+      defaultContactId: 'CA9tSMQtdWUa',
     },
     {
       name: 'Interior Savings',
       cuId: '833600041',
       route: '809',
       transit: '00490',
-      interacApiVersion: '3.4'
+      interacApiVersion: '3.4',
+      defaultParticipantUserId: '',
+      defaultContactId: '',
     },
     { 
       name: 'First Calgary',
       cuId: '046610100',
       route: '899',
       transit: '96419',
-      interacApiVersion: '3.4'
+      interacApiVersion: '3.4',
+      defaultParticipantUserId: '0899964190281989910200002605327',
+      defaultContactId: 'CANuUvFp3XT3',
     },
   ];
 
@@ -58,7 +73,7 @@ export class AppComponent {
   ]
 
   // Two way bound fields
-  contactId: string = 'CA9tSMQtdWUa';
+  contactId: string;
   requestAmount: number = 10.01;
   customerName: string = 'Requestor';
   minFulfillAmount: number = 5.05;
@@ -80,7 +95,7 @@ export class AppComponent {
   selectedFiId: string = this.fiId[0];
   selectedCreditUnion : CreditUnion;
 
-  participantUserId: string = 'CLFLNWHLQPVZKP8QN1ATD0S1WCP0ASVX';
+  participantUserId: string;
   invoiceDueDate : Date = new Date();
 
   copyBtnText = "Copy to clipboard";
@@ -147,6 +162,12 @@ export class AppComponent {
     return ' --FIAccountID "' + this.fiAccountId + '"';    
   }
 
+  prepopulateFields( selected : CreditUnion ) : void {
+    this.selectedCreditUnion = selected;
+    this.participantUserId = selected.defaultParticipantUserId;
+    this.contactId = selected.defaultContactId; 
+  }
+
   constructor() {
     this.selectedCreditUnion = this.creditUnions[0];
   }
@@ -157,7 +178,9 @@ export interface CreditUnion {
   cuId: string,
   route: string,
   transit: string,
-  interacApiVersion: string
+  interacApiVersion: string,
+  defaultParticipantUserId: string,
+  defaultContactId: string,
 }
 
 
