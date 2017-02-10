@@ -1,9 +1,11 @@
 import { Component } from '@angular/core';
+import {MoneyRequestService } from '../services/moneyRequest';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  styleUrls: ['./app.component.css'],
+  providers: [MoneyRequestService]
 })
 
 export class AppComponent {
@@ -99,9 +101,22 @@ export class AppComponent {
   invoiceDueDate : Date = new Date();
 
   copyBtnText = "Copy to clipboard";
+  runCmdBtnText = "Run Command";
+  cmdResult = "";
 
   copyText() {
     this.copyBtnText = "Copied!";
+  }
+
+  runCmd(){
+
+            this.moneyRequest.sendMoneyRequest(this.selectedFiId, this.participantUserId, this.contactId, this.requestAmount.toFixed(2), this.firstName, this.senderMemo, this.invoiceNumber, this.invoiceDueDate.getDate() + '/' + (this.invoiceDueDate.getMonth() + 1) + '/' +                                  this.invoiceDueDate.getFullYear(), this.fiAccountId, this.selectedCreditUnion.cuId, this.selectedCreditUnion.route, this.selectedCreditUnion.transit, this.customerAccountNumber, this.minutesBeforeExpire, this.isEditableFulfillAmount).subscribe(
+            data => {
+                this.cmdResult = data.text();
+            },
+            err => console.error(err),
+            () => console.log('runCmd completed')
+        );
   }
 
   getCreditUnionId() : string {
@@ -168,7 +183,7 @@ export class AppComponent {
     this.contactId = selected.defaultContactId; 
   }
 
-  constructor() {
+  constructor(private moneyRequest: MoneyRequestService) {
     this.selectedCreditUnion = this.creditUnions[0];
   }
 }
